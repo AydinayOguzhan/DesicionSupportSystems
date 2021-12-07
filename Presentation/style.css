@@ -1,0 +1,110 @@
+:root{
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+}
+
+body{
+    background-color: whitesmoke;
+    font-family: -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Oxygen-Sans, 
+    Ubuntu, 
+    Cantarell, 
+    "Helvetica Neue", 
+    sans-serif;
+}
+
+/* Inputs start  -------------------------------------------------------------------------------*/
+input{
+    height: 5vmin;
+    width: 30vmin;
+    font-size: 16px;
+    display: block;
+    border-radius: 0.25rem;
+    border-color: whitesmoke;
+}
+input:focus{
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+}
+/* Inputs end  -------------------------------------------------------------------------------*/
+
+/* Buttons start  -------------------------------------------------------------------------------*/
+.btn{
+    display: block;
+    height: 5vmin;
+    width: 10vmin;
+    font-size: medium;
+    border-radius: 0.40rem;
+    border-color: whitesmoke;
+    color: white;
+}
+.btn-big{
+    display: block;
+    height: 6vmin;
+    width: 31vmin;
+    font-size: large;
+    border-radius: 0.40rem;
+    border-color: whitesmoke;
+    color: white;
+}
+.btn:hover, .btn-big:hover{
+    filter: brightness(85%);
+}
+
+.btn-primary{
+    background-color: var(--primary);
+}
+.btn-secondary{
+    background-color: var(--gray);
+}
+.btn-red{
+    background-color: var(--red);
+}
+.btn-yellow{
+    background-color: var(--yellow);
+}
+.btn-success{
+    background-color: var(--success);
+}
+
+.text-align-center{
+    text-align: center;
+}
+/* Buttons end  -------------------------------------------------------------------------------*/
+
+.left15{
+    float:left;
+    width: 15%;
+}
+
+.center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
