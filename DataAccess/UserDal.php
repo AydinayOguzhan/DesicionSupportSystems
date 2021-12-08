@@ -5,6 +5,7 @@
         function __construct()
         {
             require_once("../Entities/user.php");
+            require_once("../Business/Constants.php");
             $this->userObj = new User();
         }
 
@@ -44,11 +45,15 @@
         function GetUserByEmail($email){
             require("../DataAccess/connection/connection.php");
             if ($kdsCon) {
-                $query = mysqli_query($kdsCon, "SELECT * FROM users WHERE email=".$email);
-                $this->userObj = mysqli_fetch_object($query);
-                return $userObj;
+                $query = mysqli_query($kdsCon, "SELECT * FROM `users` WHERE email='".$email."'");
+                if ($query == false) {
+                    return Constants::$userNotFound;
+                }else{
+                    $this->userObj = mysqli_fetch_object($query);
+                    return $this->userObj;
+                }
             }else{
-                return $userObj;
+                return Constants::$connectionError;
             }
         }
     }

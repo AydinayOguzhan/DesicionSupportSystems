@@ -17,30 +17,25 @@
                 event.preventDefault();
 
                 var values = $(this).serialize();
-                url = "../Presentation/connections/UserManagerConnection.php";
+                url = "../Connections/AuthManagerConnection.php";
 
                 $email = $("input[name=email]").val();
                 $password = $("input[name=password]").val();
-                
-                var loginObj = new Object();
-                loginObj.email = $email;
-                loginObj.password = $password;
 
                 $.ajax({
                     type: "POST",
                     url: url,
                     data: {
-                        login:JSON.stringify(loginObj)
+                        email:$email,
+                        password:$password
                     },
                 }).done(function(data) {
-                    alert(data);
-                    // if (data == 0) {
-                    //     alert("Lütfen tüm alanları doldurunuz");
-                    // } else if(data == 1){
-                    //     alert("Kullanıcı adı veya parola yanlış");
-                    // }else if(data == 2){
-                    //     alert("İşlem başarılı");
-                    // }
+                    if (data == 1) {
+                        window.location.replace("../Presentation/HomePage.php");
+                    }else{
+                        $("#error").empty();
+                        $("#error").append(data);
+                    }
                 });
             });
         });
@@ -54,6 +49,7 @@
                 <h2 class="text-align-center">Please Sign In</h2>
                 <input autofocus type="text" id="email" name="email" placeholder="Email"> <br>
                 <input type="password" id="password" name="password" placeholder="Password"> <br>
+                <label class="text-danger" id="error" name="error"></label>
                 <button class="btn-big btn-primary" id="btnSubmit" type="submit">Sign In</button>
             </form>
         </div>

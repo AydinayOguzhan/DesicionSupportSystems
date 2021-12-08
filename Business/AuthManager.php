@@ -10,23 +10,31 @@ class AuthManager
         require_once("../Business/UserManager.php");
         require_once("../Entities/login.php");
         require_once("../Entities/user.php");
+        require_once("../Business/Constants.php");
         $this->userManager = new UserManager();
         $this->loginObj = new Login();
         $this->userObj = new User();
     }
 
     public function Login(Login $login){
-        $this->userObj = $this->userManager->GetUserByEmail($login->email);
+        if ($login->email == "" || $login->password == "") {
+            echo Constants::$dontLeaveBlank;
+        }else{
+            $this->userObj = $this->userManager->GetUserByEmail($login->email);
 
-        echo $login->email;
-
-        // if ($login->email == "" || $login->password == "") {
-        //     echo 0;
-        // }elseif ($login->email !== $this->userObj->email || $login->password !== $this->userObj->password) {
-        //     echo 1;
-        // }else{
-        //     echo 2;
-        // }
+            if ($this->userObj == null) {
+                echo Constants::$userNotFound;
+            }elseif($this->userObj == Constants::$connectionError){
+                echo Constants::$connectionError;
+            }elseif ($login->email !== $this->userObj->email || $login->password !== $this->userObj->password) {
+                echo Constants::$emailOrPasswordWrong;
+            }else{
+                session_start();
+                $_SESSION["email"]=$this->userObj->email;
+                $_SESSION["userId"]=$this->userObj->id;
+                echo 1;
+            }
+        }
     }
 }
 
