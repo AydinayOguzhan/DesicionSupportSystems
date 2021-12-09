@@ -4,7 +4,8 @@
         private $userDal;
         function __construct()
         {
-            require_once("../DataAccess/UserDal.php");
+            require_once("/wamp64/www/kds/DataAccess/UserDal.php");
+            require_once("/wamp64/www/kds/Business/Constants.php");
             $this->userDal = new UserDal();
         }
 
@@ -19,4 +20,16 @@
         function GetUserByEmail($email){
             return $this->userDal->GetUserByEmail($email);
         }   
+
+        function Delete($userId){
+            $response = $this->userDal->Delete($userId);
+
+            if ($response == Constants::$successful) {
+                echo 1;
+            }elseif($response == Constants::$connectionError){
+                return Constants::$connectionError;
+            }else{
+                return Constants::$unsuccessful;
+            }
+        }
     }

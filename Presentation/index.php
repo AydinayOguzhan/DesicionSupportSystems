@@ -29,12 +29,12 @@
                         email:$email,
                         password:$password
                     },
-                }).done(function(data) {
-                    if (data == 1) {
+                }).done(function(response) {
+                    if (response == 1) {
                         window.location.replace("../Presentation/HomePage.php");
                     }else{
                         $("#error").empty();
-                        $("#error").append(data);
+                        $("#error").append(response);
                     }
                 });
             });

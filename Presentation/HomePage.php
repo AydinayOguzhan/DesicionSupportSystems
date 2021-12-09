@@ -17,8 +17,7 @@
     <?php include("./Sidebar.php"); ?>
 
     <section>
-        <h1>deneme metin</h1>
-        <!-- <?php include("./Footer.php"); ?> -->
+        <?php include("/wamp64/www/kds/Presentation/users/AllUsers.php"); ?>
     </section>
 </body>
 

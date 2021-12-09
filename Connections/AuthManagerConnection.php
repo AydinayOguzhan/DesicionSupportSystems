@@ -1,5 +1,4 @@
 <?php
-// echo $_SERVER["REQUEST_URI"];
 
 $method = $_SERVER["REQUEST_METHOD"];
 require_once "/wamp64/www/kds/Business/AuthManager.php";

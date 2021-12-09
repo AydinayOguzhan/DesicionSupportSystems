@@ -80,18 +80,23 @@ input:focus{
 
 .btn-primary{
     background-color: var(--primary);
+    border-color: var(--primary);
 }
 .btn-secondary{
     background-color: var(--gray);
+    border-color: var(--gray);
 }
-.btn-red{
+.btn-danger{
     background-color: var(--red);
+    border-color: var(--red);
 }
 .btn-yellow{
     background-color: var(--yellow);
+    border-color: var(--yellow);
 }
 .btn-success{
     background-color: var(--success);
+    border-color: var(--success);
 }
 
 /* Buttons end  -------------------------------------------------------------------------------*/
@@ -123,7 +128,7 @@ input:focus{
 *{
     margin: 0;
     padding: 0;
-    list-style: none;
+    /* list-style: none; */
     text-decoration: none;
 }
 
@@ -170,6 +175,36 @@ section{
     bottom: 0;
     width: 100%;
 }
+
+
+/* Table start  -------------------------------------------------------------------------------*/
+
+table{
+    width: 75%;
+    transform: translate(2%, 15%);
+}
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* text-align: center; */
+}
+
+th, td, caption{
+    padding: 1.7vmin;
+}
+
+tr:nth-child(even), caption{
+    background-color: var(--gray);
+    color: antiquewhite;
+}
+
+tr:nth-child(odd){
+    background-color: var(--dark);
+    color: antiquewhite;
+}
+
+/* Table end  -------------------------------------------------------------------------------*/
 
 /* footer{
     position: fixed;

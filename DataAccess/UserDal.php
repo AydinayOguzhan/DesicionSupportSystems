@@ -4,13 +4,13 @@
         private $userObj;
         function __construct()
         {
-            require_once("../Entities/user.php");
-            require_once("../Business/Constants.php");
+            require_once("/wamp64/www/kds/Entities/user.php");
+            require_once("/wamp64/www/kds/Business/Constants.php");
             $this->userObj = new User();
         }
 
         function GetAllUsers(){
-            require("../DataAccess/connection/connection.php");
+            require("/wamp64/www/kds/DataAccess/connection/connection.php");
             if ($kdsCon) {
                 $query = mysqli_query($kdsCon, "SELECT * FROM users");
                 if (mysqli_num_rows($query)) {
@@ -32,7 +32,7 @@
 
 
         function GetUserById($userId){
-            require("../DataAccess/connection/connection.php");
+            require("/wamp64/www/kds/DataAccess/connection/connection.php");
             if ($kdsCon) {
                 $query = mysqli_query($kdsCon, "SELECT * FROM users WHERE id=".$userId);
                 $this->userObj = mysqli_fetch_object($query);
@@ -43,7 +43,7 @@
         }
 
         function GetUserByEmail($email){
-            require("../DataAccess/connection/connection.php");
+            require("/wamp64/www/kds/DataAccess/connection/connection.php");
             if ($kdsCon) {
                 $query = mysqli_query($kdsCon, "SELECT * FROM `users` WHERE email='".$email."'");
                 if ($query == false) {
@@ -51,6 +51,20 @@
                 }else{
                     $this->userObj = mysqli_fetch_object($query);
                     return $this->userObj;
+                }
+            }else{
+                return Constants::$connectionError;
+            }
+        }
+
+        function Delete($userId){
+            require("/wamp64/www/kds/DataAccess/connection/connection.php");
+            if ($kdsCon) {
+                $query = mysqli_query($kdsCon, "DELETE FROM 'users' WHERE id='".$userId."'");
+                if ($query == false) {
+                    return Constants::$unsuccessful;
+                }else{
+                    return Constants::$successful;
                 }
             }else{
                 return Constants::$connectionError;
