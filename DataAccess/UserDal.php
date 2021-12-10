@@ -60,12 +60,8 @@
         function Delete($userId){
             require("/wamp64/www/kds/DataAccess/connection/connection.php");
             if ($kdsCon) {
-                $query = mysqli_query($kdsCon, "DELETE FROM 'users' WHERE id='".$userId."'");
-                if ($query == false) {
-                    return Constants::$unsuccessful;
-                }else{
-                    return Constants::$successful;
-                }
+                $query = mysqli_query($kdsCon, "DELETE FROM `users` WHERE id='".$userId."'");
+                return $query;
             }else{
                 return Constants::$connectionError;
             }

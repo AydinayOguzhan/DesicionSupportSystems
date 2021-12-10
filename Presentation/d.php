@@ -9,27 +9,43 @@ if (count($datas) <= 0) {
 } else {
 ?>
     <script>
-        function deleteUser(id) {
-            url = "../Connections/UserManagerConnection.php";
-            $.ajax({
-                type: "DELETE",
-                url: url,
-                data: {
-                    userId: id
-                },
-                success: function(response) {
-                    alert(response);
-                    location.reload();
-                }
-            })
+        function del(id) {
+            // url = "/Connections/UserManagerConnection.php";
 
+            // $.ajax({
+            //     type: "POST",
+            //     url: "<?php echo $url ?>",
+            //     data: {
+            //         type: "delete",
+            //         userId: id
+            //     }
+            // }).done(function(response) {
+            //     alert(response);
+            //     // if (response == 1) {
+            //     //     alert("İşlem başarılı");
+            //     // }else{
+            //     //     alert(response);
+            //     // }
+            // });
+            // onclick="del(<?php echo $value['id'] ?>)"
         }
     </script>
+
     <script>
-        function goToUpdate(id){
-            url = "/kds/presentation/users/userupdate.php?id="+id;
-            window.location.replace(url);
-        }
+        $(document).on("click", "button.delete", function(e) {
+            $userId = e.currentTarget.id;
+            url = "../Connections/UserManagerConnection.php";
+
+            $.ajax({
+                type: "delete",
+                url: url,
+                data: {
+                    userId: $userId
+                }
+            }).done(function(response) {
+                console.log(response);
+            });
+        });
     </script>
 
     <div class="">
@@ -56,8 +72,9 @@ if (count($datas) <= 0) {
                     <td><?php echo $value["last_name"] ?></td>
                     <!-- Passwordu kaldır -->
                     <td><?php echo $value["password"] ?></td>
-                    <td align="center"><button onclick="deleteUser(<?php echo $value['id'] ?>)" id="<?php echo $value['id'] ?>" class="btn btn-danger">Delete</button></td>
-                    <td align="center"><button onclick="goToUpdate(<?php echo $value['id'] ?>)" id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>
+                    <!-- <td align="center"><input value="Delete" type="button" name="deneme" class="btn btn-danger" id="<?php echo $value['id'] ?>"></td> -->
+                    <td align="center"><button id="<?php echo $value['id'] ?>" class="btn btn-danger delete">Delete</button></td>
+                    <td align="center"><button id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>
                 </tr>
 
         <?php }

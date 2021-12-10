@@ -23,9 +23,8 @@
 
         function Delete($userId){
             $response = $this->userDal->Delete($userId);
-
-            if ($response == Constants::$successful) {
-                echo 1;
+            if ($response == true) {
+                return Constants::$successful;
             }elseif($response == Constants::$connectionError){
                 return Constants::$connectionError;
             }else{
