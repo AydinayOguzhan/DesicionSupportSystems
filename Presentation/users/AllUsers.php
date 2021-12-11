@@ -18,7 +18,7 @@ if (count($datas) <= 0) {
                     userId: id
                 },
                 success: function(response) {
-                    alert(response);
+                    // alert(response);
                     location.reload();
                 }
             })
@@ -30,10 +30,16 @@ if (count($datas) <= 0) {
             url = "/kds/presentation/users/userupdate.php?id="+id;
             window.location.replace(url);
         }
+
+        function goToAdd(){
+            url = "/kds/presentation/users/UserAdd.php";
+            window.location.replace(url);
+        }
     </script>
 
     <div class="">
-        <table id="tr">
+        <button onclick="goToAdd()" class="btn-big btn-success btn-add-position">Add User</button>
+        <table>
             <caption>All Users</caption>
             <tr>
                 <th>company id</th>

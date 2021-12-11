@@ -1,83 +1,70 @@
 <?php
-require_once("/wamp64/www/kds/Business/UserManager.php");
-$url = "/wamp64/www/kds/Connections/UserManagerConnection.php";
-$userManager = new UserManager();
-$datas = array();
-$datas = $userManager->GetAllUsers();
-if (count($datas) <= 0) {
-    echo "Ber şeyler ters gitti";
-} else {
+$userId = $_GET["id"];
 ?>
-    <script>
-        function del(id) {
-            // url = "/Connections/UserManagerConnection.php";
 
-            // $.ajax({
-            //     type: "POST",
-            //     url: "<?php echo $url ?>",
-            //     data: {
-            //         type: "delete",
-            //         userId: id
-            //     }
-            // }).done(function(response) {
-            //     alert(response);
-            //     // if (response == 1) {
-            //     //     alert("İşlem başarılı");
-            //     // }else{
-            //     //     alert(response);
-            //     // }
-            // });
-            // onclick="del(<?php echo $value['id'] ?>)"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik KDS</title>
+
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        function addUser() {
+            $(document).ready(function() {
+                var url = "../Connections/UserManagerConnection.php";
+
+                var company_id = $("input[name='company_id']").val();
+                var first_name = $("input[name='first_name']").val();
+                var last_name = $("input[name='last_name']").val();
+                var email = $("input[name='email']").val();
+                var password = $("input[name='password']").val();
+
+                $.ajax({
+                    type:"POST",
+                    url:url,
+                    data:{
+                        company_id:company_id,
+                        first_name:first_name,
+                        last_name:last_name,
+                        email:email,
+                        password:password
+                    },
+                    // success:function(response){
+                    //     //TODO: Write on success
+
+                    //     //Write error messages to this
+                    //     // $("#error_message").empty();
+                    //     // $("#error_message").append("hata");
+                    // }
+                }).done(function(response){
+                    console.log(response);
+                })
+            });
         }
     </script>
+</head>
 
-    <script>
-        $(document).on("click", "button.delete", function(e) {
-            $userId = e.currentTarget.id;
-            url = "../Connections/UserManagerConnection.php";
-
-            $.ajax({
-                type: "delete",
-                url: url,
-                data: {
-                    userId: $userId
-                }
-            }).done(function(response) {
-                console.log(response);
-            });
-        });
-    </script>
-
-    <div class="">
-        <table id="tr">
-            <caption>All Users</caption>
-            <tr>
-                <th>company id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Password</th>
-                <th>Delete</th>
-                <th>Update</th>
-            </tr>
-            <?php
-            foreach ($datas as $key => $value) {
-            ?>
-                <tr>
-                    <td><?php if (is_null($value["company_id"]) === false) {
-                            echo $value["company_id"];
-                        } else {
-                            echo "Şirket kaydı yok";
-                        }  ?></td>
-                    <td><?php echo $value["first_name"] ?></td>
-                    <td><?php echo $value["last_name"] ?></td>
-                    <!-- Passwordu kaldır -->
-                    <td><?php echo $value["password"] ?></td>
-                    <!-- <td align="center"><input value="Delete" type="button" name="deneme" class="btn btn-danger" id="<?php echo $value['id'] ?>"></td> -->
-                    <td align="center"><button id="<?php echo $value['id'] ?>" class="btn btn-danger delete">Delete</button></td>
-                    <td align="center"><button id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>
-                </tr>
-
-        <?php }
-        } ?>
-
+<body>
+    <div>
+        <?php include("/wamp64/www/kds/Presentation/Sidebar.php"); ?>
     </div>
+
+    <section class="center-form-user">
+        <label class="header header-primary">Add User </label><br><br>
+        <input class="big-input" autofocus type="text" id="company_id" name="company_id" placeholder="Company Id"> <br>
+        <input class="big-input" type="text" id="first_name" name="first_name" placeholder="First Name"> <br>
+        <input class="big-input" type="text" id="last_name" name="last_name" placeholder="Last Name"> <br>
+        <input class="big-input" type="email" id="email" name="email" placeholder="Email"> <br>
+        <input class="big-input" type="text" id="password" name="password" placeholder="Password"> <br>
+        <label class="text-danger" id="error_message"></label><br>
+        <button onclick="addUser()" class="btn-big btn-success btn-form">Add User</button>
+    </section>
+</body>
+
+</html>

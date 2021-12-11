@@ -41,12 +41,24 @@ input{
     height: 5vmin;
     width: 30vmin;
     font-size: 16px;
-    display: block;
+    /* display: block; */
     border-radius: 0.25rem;
     border-color: whitesmoke;
     margin: 1vmin;
     padding: 0.5vmin;
 }
+
+.big-input{
+    height: 5vmin;
+    width: 100vmin;
+    font-size: 16px;
+    /* display: block; */
+    border-radius: 0.25rem;
+    border-color: whitesmoke;
+    margin: 1vmin;
+    padding: 0.5vmin;
+}
+
 input:focus{
     outline: none !important;
     border-color: #719ECE;
@@ -78,6 +90,10 @@ input:focus{
     transition: 0.1s;
 }
 
+.btn-form{
+    margin: 2vmin;
+}
+
 .btn-primary{
     background-color: var(--primary);
     border-color: var(--primary);
@@ -97,6 +113,10 @@ input:focus{
 .btn-success{
     background-color: var(--success);
     border-color: var(--success);
+}
+
+.btn-add-position{
+    transform: translate(350%, 70%);
 }
 
 /* Buttons end  -------------------------------------------------------------------------------*/
@@ -181,7 +201,10 @@ section{
 
 table{
     width: 75%;
-    transform: translate(2%, 15%);
+    margin-top: 6vmin;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2vmin;
 }
 
 table, th, td{
@@ -205,6 +228,40 @@ tr:nth-child(odd){
 }
 
 /* Table end  -------------------------------------------------------------------------------*/
+
+.center-form-user{
+    transform: translate(14%, 35%);
+}
+
+/* Header label start  -------------------------------------------------------------------------------*/
+
+.header{
+    line-height: 5vmin;
+    font-size: 5vmin;
+    margin: 2vmin;
+    padding: 0.5vmin;
+    color: var(--white);
+    border-radius: 0.5vmin;
+    
+}
+
+.header-primary{
+    background-color: var(--primary);
+}
+
+.header-danger{
+    background-color: var(--danger);
+}
+
+.header-success{
+    background-color: var(--success);
+}
+
+/* Header label end  -------------------------------------------------------------------------------*/
+
+
+
+
 
 /* footer{
     position: fixed;
