@@ -14,7 +14,8 @@ class UserDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "SELECT * FROM users");
+            $query = mysqli_query($kdsCon, "SELECT u.id, u.company_id, u.first_name, u.last_name, u.email, u.password,
+            o.operation_claim_id FROM `users` as u INNER JOIN useroperationclaim as o on u.id = o.user_id ");
             if (mysqli_num_rows($query)) {
                 $users = array();
                 while ($row = mysqli_fetch_assoc($query)) {
@@ -49,7 +50,9 @@ class UserDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "SELECT * FROM `users` WHERE email='" . $email . "'");
+            $query = mysqli_query($kdsCon, "SELECT u.id, u.company_id, u.first_name, u.last_name, u.email, u.password,
+            o.operation_claim_id FROM `users` as u INNER JOIN useroperationclaim as o on u.id = o.user_id 
+            where u.email='" . $email . "' ");
             if ($query == false) {
                 return Constants::$userNotFound;
             } else {
@@ -96,12 +99,12 @@ class UserDal
             if ($user->company_id == 0) {
                 $query = mysqli_query($kdsCon, "UPDATE `users` SET  `first_name`='" . $user->first_name . "',
                  `last_name`='" . $user->last_name . "', `email`='" . $user->email . "', `password`='" . $user->password . "' 
-                 WHERE id='".$user->id."' ");
+                 WHERE id='" . $user->id . "' ");
                 return $query;
             }
             $query = mysqli_query($kdsCon, "UPDATE `users` SET `company_id`='" . $user->company_id . "', 
                 `first_name`='" . $user->first_name . "', `last_name`='" . $user->last_name . "', `email`='" . $user->email . "', 
-                `password`='" . $user->password . "' WHERE id='".$user->id."'");
+                `password`='" . $user->password . "' WHERE id='" . $user->id . "'");
             return $query;
         } else {
             return Constants::$connectionError;

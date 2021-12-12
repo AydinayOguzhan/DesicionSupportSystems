@@ -26,8 +26,8 @@
                     type: "POST",
                     url: url,
                     data: {
-                        email:$email,
-                        password:$password
+                        email: $email,
+                        password: $password
                     },
                 }).done(function(response) {
                     if (response == 1) {
@@ -50,7 +50,7 @@
                 <input autofocus type="text" id="email" name="email" placeholder="Email"> <br>
                 <input type="password" id="password" name="password" placeholder="Password"> <br>
                 <label class="text-danger" id="error" name="error"></label>
-                <button class="btn-big btn-primary" id="btnSubmit" type="submit">Sign In</button>
+                <button class="btn-big btn-primary btn-sign-in-position" id="btnSubmit" type="submit">Sign In</button>
             </form>
         </div>
     </div>

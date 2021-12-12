@@ -1,4 +1,23 @@
-<?php ?>
+<?php 
+    
+?>
+
+<script>
+    function signOut(){
+        connectionUrl = "/kds/connections/authmanagerconnection.php";
+        $.ajax({
+            type:"DELETE",
+            url: connectionUrl,
+        }).done(function(response){
+            if (response == 1) {
+                window.location.replace("/kds/presentation/index.php");
+            }else{
+                alert(response);
+            }
+        });
+    }
+</script>
+
 <div class="">
     <div class="sidebar">
         <header>Klinik KDS</header>
@@ -17,9 +36,8 @@
             <li><a href="#"><i class="fas fa-viruses"></i>Diseases</a></li>
             <li><a href="#"><i class="fas fa-bed"></i>Rooms</a></li>
             <li><a href="#"><i class="fas fa-heartbeat"></i>Critical Care Units</a></li>
-            <!-- 
-                fa-head-side-mask
-             -->
+            <li><a href="#" onclick="signOut()"><i class="fas fa-times"></i>Sign Out</a></li>
+            
         </ul>
     </div>
 </div>

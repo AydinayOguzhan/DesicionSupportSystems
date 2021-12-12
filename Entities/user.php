@@ -6,5 +6,6 @@
         public $last_name;
         public $email;
         public $password;   
+        public $operation_claim_id;
     }
 ?>

@@ -18,6 +18,8 @@ switch ($method) {
         echo $putVars["email"];
         break;
     case 'DELETE':
-        echo 3;
+        session_start();
+        session_destroy();
+        echo 1;
         break;
 }
