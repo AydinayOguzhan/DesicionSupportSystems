@@ -110,4 +110,8 @@ class UserDal
             return Constants::$connectionError;
         }
     }
+
+    function GetUserDynamic(){
+        
+    }
 }
