@@ -25,6 +25,7 @@
             $userObj->last_name = $putVars["last_name"];
             $userObj->email = $putVars["email"];
             $userObj->password = $putVars["password"];
+            $userObj->operation_claim_id = $putVars["operation_claim_id"];
             echo $userManager->Update($userObj);
             break;
         case 'DELETE':

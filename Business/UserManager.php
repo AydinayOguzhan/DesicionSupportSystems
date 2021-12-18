@@ -3,11 +3,14 @@
 class UserManager
 {
     private $userDal;
+    private $userOperationClaimManager;
     function __construct()
     {
         require_once("/wamp64/www/kds/DataAccess/UserDal.php");
         require_once("/wamp64/www/kds/Business/Constants.php");
+        require_once("/wamp64/www/kds/Business/UserOperationClaimManager.php");
         $this->userDal = new UserDal();
+        $this->userOperationClaimManager = new UserOperationClaimManager();
     }
 
     function GetAllUsers()

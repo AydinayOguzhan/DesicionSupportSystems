@@ -16,7 +16,7 @@ class UserDal
         if ($kdsCon) {
             $query = mysqli_query($kdsCon, "SELECT u.id, u.company_id, u.first_name, u.last_name, u.email, u.password,
             o.operation_claim_id FROM `users` as u INNER JOIN useroperationclaim as o on u.id = o.user_id ");
-            if (mysqli_num_rows($query)) {
+            if (mysqli_num_rows($query) > 0) {
                 $users = array();
                 while ($row = mysqli_fetch_assoc($query)) {
                     $users[] = $row;
@@ -38,11 +38,13 @@ class UserDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "SELECT * FROM users WHERE id='" . $userId . "'");
+            $query = mysqli_query($kdsCon, "SELECT u.id, u.company_id, u.first_name, u.last_name, u.email, u.password,
+            o.operation_claim_id FROM users as u INNER JOIN useroperationclaim as o on u.id = o.user_id 
+            WHERE u.id='" . $userId . "'");
             $this->userObj = mysqli_fetch_object($query);
             return $this->userObj;
         } else {
-            return $array;
+            return $obj;
         }
     }
 
@@ -78,7 +80,7 @@ class UserDal
     function Add(User $user)
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
-        if ($kdsCon) {
+        if ($kdsCon) {       
             if ($user->company_id == 0) {
                 $query = mysqli_query($kdsCon, "INSERT INTO `users`(first_name, last_name, email, password) 
                     values('" . $user->first_name . "','" . $user->last_name . "','" . $user->email . "','" . $user->password . "')");

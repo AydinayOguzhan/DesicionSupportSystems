@@ -240,7 +240,7 @@ tr:nth-child(odd){
 
 
 .center-form-user{
-    transform: translate(14%, 35%);
+    transform: translate(14%, 12%);
 }
 
 /* Header label start  -------------------------------------------------------------------------------*/
@@ -252,7 +252,6 @@ tr:nth-child(odd){
     padding: 0.5vmin;
     color: var(--white);
     border-radius: 0.5vmin;
-    
 }
 
 .header-primary{
@@ -265,6 +264,14 @@ tr:nth-child(odd){
 
 .header-success{
     background-color: var(--success);
+}
+
+.header-sml{
+    line-height: 1vmin;
+    font-size: 2vmin;
+    margin: 0.5vmin;
+    padding: 0.5vmin;
+    border-radius: 0.5vmin;
 }
 
 /* Header label end  -------------------------------------------------------------------------------*/

@@ -22,8 +22,8 @@
     <div class="sidebar">
         <header>Klinik KDS</header>
         <ul>
-            <li><a href="#"><i class="fas fa-chart-line"></i>Dashboard</a></li>
-            <li><a href="/kds/presentation/homepage.php"><i class="fas fa-users"></i>Users</a></li>
+            <li><a href="/kds/Presentation/HomePage.php"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+            <li><a href="/kds/presentation/users/AllUsers.php"><i class="fas fa-users"></i>Users</a></li>
             <li><a href="#"><i class="fas fa-building"></i>Companies</a></li>
             <li><a href="#"><i class="fas fa-money-bill-wave-alt"></i>Subscriptions</a></li>
             <li><a href="#"><i class="fas fa-user-md"></i>Doctors</a></li>

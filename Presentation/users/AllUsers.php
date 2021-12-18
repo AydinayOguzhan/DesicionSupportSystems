@@ -17,6 +17,11 @@ if (count($datas) <= 0) {
     echo "Ber şeyler ters gitti";
 } else {
 ?>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <?php include("/wamp64/www/kds/Presentation/SubHeader.php"); ?>
+
     <script>
         function deleteUser(id) {
             url = "../Connections/UserManagerConnection.php";
@@ -33,6 +38,7 @@ if (count($datas) <= 0) {
 
         }
     </script>
+
     <script>
         function goToUpdate(id) {
             url = "/kds/presentation/users/userupdate.php?id=" + id;
@@ -44,53 +50,60 @@ if (count($datas) <= 0) {
             window.location.replace(url);
         }
 
-        function filter(){
+        function filter() {
             console.log("filter works");
         }
     </script>
 
-    <div>
-        <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
-        <button onclick="goToAdd()" class="btn-big btn-success btn-add-position">Add User</button>
-        <?php }?>
-        <button onclick="filter()" class="btn btn-primary btn-add-position">Filter</button>
-
-        <table>
-            <caption>All Users</caption>
-            <tr>
-                <th>company id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Operation Claim Id</th>
+    <body>
+        <?php include("/wamp64/www/kds/Presentation/Sidebar.php"); ?>
+        <section>
+            <div>
                 <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
-                <th>Delete</th>
-                <th>Update</th>
-                <?php }?>
-            </tr>
-            <?php
-            foreach ($datas as $key => $value) {
-            ?>
-                <tr>
-                    <td><?php if (is_null($value["company_id"]) === false) {
-                            echo $value["company_id"];
-                        } else {
-                            echo "Şirket kaydı yok";
-                        }  ?></td>
-                    <td><?php echo $value["first_name"] ?></td>
-                    <td><?php echo $value["last_name"] ?></td>
-                    <td><?php echo $value["email"] ?></td>
-                    <!-- Passwordu kaldır -->
-                    <td><?php echo $value["password"] ?></td>
-                    <td><?php echo $value["operation_claim_id"] ?></td>
-                    <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
-                    <td align="center"><button onclick="deleteUser(<?php echo $value['id'] ?>)" id="<?php echo $value['id'] ?>" class="btn btn-danger">Delete</button></td>
-                    <td align="center"><button onclick="goToUpdate(<?php echo $value['id'] ?>)" id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>
-                    <?php }?>
-                </tr>
+                    <button onclick="goToAdd()" class="btn-big btn-success btn-add-position">Add User</button>
+                <?php } ?>
+                <button onclick="filter()" class="btn btn-primary btn-add-position">Filter</button>
 
-        <?php }
-        } ?>
+                <table>
+                    <caption>All Users</caption>
+                    <tr>
+                        <th>company id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Operation Claim Id</th>
+                        <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
+                            <th>Delete</th>
+                            <th>Update</th>
+                        <?php } ?>
+                    </tr>
+                    <?php
+                    foreach ($datas as $key => $value) {
+                    ?>
+                        <tr>
+                            <td><?php if (is_null($value["company_id"]) === false) {
+                                    echo $value["company_id"];
+                                } else {
+                                    echo "Şirket kaydı yok";
+                                }  ?></td>
+                            <td><?php echo $value["first_name"] ?></td>
+                            <td><?php echo $value["last_name"] ?></td>
+                            <td><?php echo $value["email"] ?></td>
+                            <!-- Passwordu kaldır -->
+                            <td><?php echo $value["password"] ?></td>
+                            <td><?php echo $value["operation_claim_id"] ?></td>
+                            <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
+                                <td align="center"><button onclick="deleteUser(<?php echo $value['id'] ?>)" id="<?php echo $value['id'] ?>" class="btn btn-danger">Delete</button></td>
+                                <td align="center"><button onclick="goToUpdate(<?php echo $value['id'] ?>)" id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>
+                            <?php } ?>
+                        </tr>
 
-    </div>
+                <?php }
+                } ?>
+
+            </div>
+        </section>
+    </body>
+
+    </html>

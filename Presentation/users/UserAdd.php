@@ -29,7 +29,7 @@
                 })
                 .done(function(response) {
                     if (response == 1) {
-                        url = "/kds/presentation/HomePage.php";
+                        url = "/kds/presentation/users/AllUsers.php";
                         window.location.replace(url);
                     } else {
                         $("#error_message").empty();
@@ -41,7 +41,7 @@
 
 
     function cancel() {
-        url = "/kds/presentation/HomePage.php";
+        url = "/kds/presentation/users/AllUsers.php";
         window.location.replace(url);
     }
 </script>

@@ -7,7 +7,7 @@
     <?php include("./Sidebar.php"); ?>
 
     <section>
-        <?php include("/wamp64/www/kds/Presentation/users/AllUsers.php"); ?>
+        <?php include("/wamp64/www/kds/Presentation/dashboard/Dashboard.php"); ?>
     </section>
 </body>
 
