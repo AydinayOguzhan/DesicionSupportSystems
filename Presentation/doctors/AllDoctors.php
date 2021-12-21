@@ -1,5 +1,5 @@
 <?php
-require_once("/wamp64/www/kds/Business/UserManager.php");
+require_once("/wamp64/www/kds/Business/DoctorManager.php");
 
 session_start();
 $operationClaimId = $_SESSION["operation_claim_id"];
@@ -9,27 +9,27 @@ if ($operationClaimId == null) {
     exit();
 }
 
-$url = "/wamp64/www/kds/Connections/UserManagerConnection.php";
-$userManager = new UserManager();
+$url = "/wamp64/www/kds/Connections/DoctorManagerConnection.php";
+$doctorManager = new DoctorManager();
 $datas = array();
-$datas = $userManager->GetAllUsers();
+$datas = $doctorManager->GetAllDoctors();
 if (count($datas) <= 0) {
     echo "Ber şeyler ters gitti";
 } else {
 ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="tr">
 
     <?php include("/wamp64/www/kds/Presentation/SubHeader.php"); ?>
 
     <script>
         function deleteUser(id) {
-            url = "/kds/Connections/UserManagerConnection.php";
+            url = "/kds/Connections/DoctorManagerConnection.php";
             $.ajax({
                 type: "DELETE",
                 url: url,
                 data: {
-                    userId: id
+                    doctorId: id
                 },
                 success: function(response) {
                     location.reload();
@@ -41,12 +41,13 @@ if (count($datas) <= 0) {
 
     <script>
         function goToUpdate(id) {
-            url = "/kds/presentation/users/userupdate.php?id=" + id;
-            window.location.replace(url);
+            // url = "/kds/presentation/users/userupdate.php?id=" + id;
+            // window.location.replace(url);
+            alert("Update");
         }
 
         function goToAdd() {
-            url = "/kds/presentation/users/UserAdd.php";
+            url = "/kds/presentation/doctors/DoctorAdd.php";
             window.location.replace(url);
         }
 
@@ -60,19 +61,17 @@ if (count($datas) <= 0) {
         <section>
             <div>
                 <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
-                    <button onclick="goToAdd()" class="btn-big btn-success btn-add-position">Add User</button>
+                    <button onclick="goToAdd()" class="btn-big btn-success btn-add-position">Add Doctor</button>
                 <?php } ?>
                 <button onclick="filter()" class="btn btn-primary btn-add-position">Filter</button>
 
                 <table>
-                    <caption>All Users</caption>
+                    <caption>All Doctors</caption>
                     <tr>
-                        <th>company id</th>
+                        <th>Major Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Operation Claim Id</th>
+                        <th>Doctor Workplace</th>
                         <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
                             <th>Delete</th>
                             <th>Update</th>
@@ -82,17 +81,10 @@ if (count($datas) <= 0) {
                     foreach ($datas as $key => $value) {
                     ?>
                         <tr>
-                            <td><?php if (is_null($value["company_id"]) === false) {
-                                    echo $value["company_id"];
-                                } else {
-                                    echo "Şirket kaydı yok";
-                                }  ?></td>
-                            <td><?php echo $value["first_name"] ?></td>
-                            <td><?php echo $value["last_name"] ?></td>
-                            <td><?php echo $value["email"] ?></td>
-                            <!-- Passwordu kaldır -->
-                            <td><?php echo $value["password"] ?></td>
-                            <td><?php echo $value["operation_claim_id"] ?></td>
+                        <td><?php echo $value["major_id"] ?></td>
+                            <td><?php echo $value["doctor_first_name"] ?></td>
+                            <td><?php echo $value["doctor_last_name"] ?></td>
+                            <td><?php echo $value["clinic_name"] ?></td>
                             <?php if ($operationClaimId == 1 || $operationClaimId == 2) { ?>
                                 <td align="center"><button onclick="deleteUser(<?php echo $value['id'] ?>)" id="<?php echo $value['id'] ?>" class="btn btn-danger">Delete</button></td>
                                 <td align="center"><button onclick="goToUpdate(<?php echo $value['id'] ?>)" id="btnUpdate" name="btnUpdate" class="btn btn-primary">Update</button></td>

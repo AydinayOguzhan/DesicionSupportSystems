@@ -113,7 +113,4 @@ class UserDal
         }
     }
 
-    function GetUserDynamic(){
-        
-    }
 }

@@ -1,0 +1,41 @@
+<?php
+
+class ClinicManager
+{
+    private $clinicDal;
+    function __construct()
+    {
+        require_once("/wamp64/www/kds/Business/Constants.php");
+        require_once("/wamp64/www/kds/DataAccess/ClinicDal.php");
+        $this->clinicDal = new ClinicDal();
+    }
+
+    function GetAllClinics()
+    {
+        return $this->clinicDal->GetAllClinics();
+    }
+
+    function Add($clinicName)
+    {
+        $response = $this->clinicDal->Add($clinicName);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            return Constants::$connectionError;
+        } else {
+            return Constants::$unsuccessful;
+        }
+    }
+
+    function Delete($clinicId)
+    {
+        $response = $this->clinicDal->Delete($clinicId);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            return Constants::$connectionError;
+        } else {
+            return Constants::$unsuccessful;
+        }
+    }
+}

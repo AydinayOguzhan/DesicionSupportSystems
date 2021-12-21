@@ -34,6 +34,7 @@ body{
     Cantarell, 
     "Helvetica Neue", 
     sans-serif;
+    overflow-x: hidden !important;
 }
 
 /* Inputs start  -------------------------------------------------------------------------------*/
@@ -276,9 +277,35 @@ tr:nth-child(odd){
 
 /* Header label end  -------------------------------------------------------------------------------*/
 
+label{
+    margin: 1vmin;
+}
 
+select{
+    padding-left: 1vmin;
+    padding-top: 0.2vmin;
+    padding-bottom: 0.2vmin;
+    margin: 1vmin;
+    width: 101vmin;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2.7;
+    color: black;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    appearance: none;
+    text-align: left;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
 
-
+select:hover{
+    border: 1px solid #719ECE;
+}
 
 /* footer{
     position: fixed;
