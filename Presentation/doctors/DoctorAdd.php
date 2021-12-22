@@ -59,7 +59,11 @@
         <input class="big-input" value="0" autofocus type="number" id="major_id" name="major_id" placeholder="Major Id"> <br>
         <input class="big-input" type="text" id="first_name" name="first_name" placeholder="First Name"> <br>
         <input class="big-input" type="text" id="last_name" name="last_name" placeholder="Last Name"> <br>
-        <label for="workplace">Workplace Id</label><br>
+        <input class="big-input" value="0" type="number" id="wage" name="wage" placeholder="Wage"> <br>
+
+        <input class="big-input" type="text" id="major" name="major" placeholder="Major"> <br>
+        
+        <label for="workplace">Workplace</label><br>
         <select name="workplace" id="workplace">
             <?php foreach ($clinics as $value) { ?>
                 <option value="<?php echo $value["id"]; ?>"><?php echo $value["clinic_name"] ?></option>

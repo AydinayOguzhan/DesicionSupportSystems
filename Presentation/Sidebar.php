@@ -28,7 +28,7 @@
             <li><a href="#"><i class="fas fa-money-bill-wave-alt"></i>Subscriptions</a></li>
             <li><a href="/kds/presentation/doctors/AllDoctors.php"><i class="fas fa-user-md"></i>Doctors</a></li>
             <li><a href="#"><i class="fas fa-user-nurse"></i>Nurses</a></li>
-            <li><a href="#"><i class="fas fa-chalkboard-teacher"></i>Majors</a></li>
+            <li><a href="/kds/presentation/majors/AllMajors.php"><i class="fas fa-chalkboard-teacher"></i>Majors</a></li>
             <li><a href="/kds/presentation/clinic/AllClinics.php"><i class="fas fa-clinic-medical"></i>Clinics</a></li>
             <li><a href="#"><i class="fas fa-procedures"></i>Operating Rooms</a></li>
             <li><a href="#"><i class="fas fa-user-injured"></i>Patients</a></li>

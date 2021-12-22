@@ -11,8 +11,12 @@ class DoctorDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "select * from doctorworkplaces as dwp 
-            inner join doctors on dwp.doctor_id = doctors.id inner join clinics on dwp.clinic_id = clinics.id");
+            $query = mysqli_query($kdsCon, "select doctors.id, doctors.doctor_first_name, doctors.doctor_last_name, 
+            doctors.major_id, majors.major_name, clinics.id, clinics.clinic_name, doctorwages.wage 
+            from doctorworkplaces as dwp inner join doctors on dwp.doctor_id = doctors.id 
+            inner join clinics on dwp.clinic_id = clinics.id 
+            inner join doctorwages on dwp.doctor_id = doctorwages.doctor_id 
+            inner join majors on majors.id = doctors.major_id");
             if (mysqli_num_rows($query) > 0) {
                 $users = array();
                 while ($row = mysqli_fetch_assoc($query)) {
