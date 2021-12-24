@@ -33,7 +33,7 @@ if (count($datas) <= 0) {
                 },
                 success: function(response) {
                     location.reload();
-                }
+                },
             })
 
         }
@@ -41,9 +41,8 @@ if (count($datas) <= 0) {
 
     <script>
         function goToUpdate(id) {
-            // url = "/kds/presentation/users/userupdate.php?id=" + id;
-            // window.location.replace(url);
-            alert("Update");
+            url = "/kds/presentation/doctors/DoctorUpdate.php?id=" + id;
+            window.location.replace(url);
         }
 
         function goToAdd() {

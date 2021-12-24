@@ -51,4 +51,38 @@ class ClinicDal
         }
     }
 
+
+    function AddDoctorClinic($doctorId, $clinicId){
+        require("/wamp64/www/kds/DataAccess/connection/connection.php");
+        if ($kdsCon) {       
+            $query = mysqli_query($kdsCon, "INSERT INTO `doctorworkplaces`(`doctor_id`, `clinic_id`) 
+            VALUES ('".$doctorId."' ,'".$clinicId."')");
+            return $query;
+        } else {
+            return Constants::$connectionError;
+        }
+    }
+
+    function DeleteDoctorClinic($doctorId){
+        require("/wamp64/www/kds/DataAccess/connection/connection.php");
+        if ($kdsCon) {       
+            $query = mysqli_query($kdsCon, "DELETE FROM doctorworkplaces where doctor_id = '".$doctorId."' ");
+            return $query;
+        } else {
+            return Constants::$connectionError;
+        }
+    }
+
+    function UpdateDoctorClinic($doctorId, $clinicId){
+        require("/wamp64/www/kds/DataAccess/connection/connection.php");
+        if ($kdsCon) {       
+            $query = mysqli_query($kdsCon, "UPDATE `doctorworkplaces` set clinic_id = '".$clinicId."'
+            where doctor_id = '".$doctorId."' ");
+            return $query;
+        } else {
+            return Constants::$connectionError;
+        }
+    }
+
+
 }

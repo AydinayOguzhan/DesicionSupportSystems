@@ -16,7 +16,7 @@ class DoctorManager
         return $this->doctorDal->GetAllDoctors();
     }
 
-    function GetUserById($doctorId)
+    function GetDoctorById($doctorId)
     {
         return $this->doctorDal->GetDoctorById($doctorId);
     }
@@ -42,9 +42,9 @@ class DoctorManager
         }
     }
 
-    function Add(Doctor $doctor, $workplace)
+    function Add(Doctor $doctor, $workplace, $wage)
     {
-        $response = $this->doctorDal->Add($doctor,$workplace);
+        $response = $this->doctorDal->Add($doctor,$workplace, $wage);
         if ($response == true) {
             return 1;
         } elseif ($response == Constants::$connectionError) {
@@ -54,8 +54,15 @@ class DoctorManager
         }
     }
 
-    function Update()
+    function Update(Doctor $doctor, $workplace, $wage)
     {
-      
+        $response = $this->doctorDal->Update($doctor,$workplace, $wage);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            return Constants::$connectionError;
+        } else {
+            return Constants::$unsuccessful;
+        }
     }
 }

@@ -38,4 +38,37 @@ class ClinicManager
             return Constants::$unsuccessful;
         }
     }
+
+    function AddDoctorClinic($doctorId, $clinicId){
+        $response = $this->clinicDal->AddDoctorClinic($doctorId, $clinicId);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            throw new Exception(Constants::$connectionError, 1);
+        } else {
+            throw new Exception(Constants::$unsuccessful, 1);
+        }
+    }
+
+    function DeleteDoctorClinic($doctorId){
+        $response = $this->clinicDal->DeleteDoctorClinic($doctorId);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            throw new Exception(Constants::$connectionError, 1);
+        } else {
+            throw new Exception(Constants::$unsuccessful, 1);
+        }
+    }
+
+    function UpdateDoctorClinic($doctorId, $clinicId){
+        $response = $this->clinicDal->UpdateDoctorClinic($doctorId,$clinicId);
+        if ($response == true) {
+            return 1;
+        } elseif ($response == Constants::$connectionError) {
+            throw new Exception(Constants::$connectionError, 1);
+        } else {
+            throw new Exception(Constants::$unsuccessful, 1);
+        }
+    }
 }

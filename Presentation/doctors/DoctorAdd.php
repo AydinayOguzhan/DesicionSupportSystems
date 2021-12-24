@@ -1,7 +1,10 @@
 <?php 
     require_once("/wamp64/www/kds/Business/ClinicManager.php");
+    require_once("/wamp64/www/kds/Business/MajorManager.php");
     $clinicManager = new ClinicManager();
+    $majorManager = new MajorManager();
     $clinics = $clinicManager->GetAllClinics();
+    $majors = $majorManager->GetAllMajors();
 ?>
 
 <!DOCTYPE html>
@@ -14,19 +17,21 @@
         $(document).ready(function() {
             url = "/kds/Connections/DoctorManagerConnection.php";
 
-            var major_id = $("input[name='major_id']").val();
             var first_name = $("input[name='first_name']").val();
             var last_name = $("input[name='last_name']").val();
+            var wage = $("input[name='wage']").val();
             var workplace = $("select[name='workplace']").val();
+            var major = $("select[name='major']").val();
 
             $.ajax({
                     type: "POST",
                     url: url,
                     data: {
-                        major_id:major_id,
+                        major_id:major,
                         first_name: first_name,
                         last_name: last_name,
-                        workplace:workplace
+                        workplace:workplace,
+                        wage:wage,
                     },
                 })
                 .done(function(response) {
@@ -55,20 +60,24 @@
 
     <section class="center-form-user">
         <label class="header header-primary">Add Doctor </label><br><br>
-        <label for="major_id">Major Id</label><br>
-        <input class="big-input" value="0" autofocus type="number" id="major_id" name="major_id" placeholder="Major Id"> <br>
         <input class="big-input" type="text" id="first_name" name="first_name" placeholder="First Name"> <br>
         <input class="big-input" type="text" id="last_name" name="last_name" placeholder="Last Name"> <br>
+        <label for="wage">Wage</label><br>
         <input class="big-input" value="0" type="number" id="wage" name="wage" placeholder="Wage"> <br>
-
-        <input class="big-input" type="text" id="major" name="major" placeholder="Major"> <br>
         
+        <label for="major">Major</label><br>
+        <select name="major" id="major">
+            <?php foreach ($majors as $value) { ?>
+                <option value="<?php echo $value["id"]; ?>"><?php echo $value["major_name"] ?></option>
+            <?php } ?>
+        </select><br>
+
         <label for="workplace">Workplace</label><br>
         <select name="workplace" id="workplace">
             <?php foreach ($clinics as $value) { ?>
                 <option value="<?php echo $value["id"]; ?>"><?php echo $value["clinic_name"] ?></option>
             <?php } ?>
-        </select>
+        </select><br>
         
         <label class="text-danger" id="error_message"></label><br>
         <button onclick="addDoctor()" class="btn-big btn-success btn-form">Add Doctor</button>
