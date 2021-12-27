@@ -20,7 +20,7 @@ class ClinicDal
                 mysqli_close($kdsCon);
                 return $clinics;
             } else {
-                $uclinicssers = array();
+                $clinics = array();
                 return $clinics;
             }
         } else {
@@ -84,5 +84,49 @@ class ClinicDal
         }
     }
 
+    function GetClinicApplicationNumbers(){
+        require("/wamp64/www/kds/DataAccess/connection/connection.php");
+        if ($kdsCon) {
+            $query = mysqli_query($kdsCon, "SELECT COUNT(applicationinformations.id) as application_numbers, clinics.clinic_name FROM `applicationinformations` 
+            inner join clinics on applicationinformations.clinic_id = clinics.id GROUP by clinics.clinic_name");
+            if (mysqli_num_rows($query) > 0) {
+                $applicationNumbers = array();
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $applicationNumbers[] = $row;
+                }
+                mysqli_close($kdsCon);
+                return $applicationNumbers;
+            } else {
+                $applicationNumbers = array();
+                return $applicationNumbers;
+            }
+        } else {
+            $applicationNumbers = array();
+            return $applicationNumbers;
+        }
+    }
 
+    function GetClinicPatientsAge(){
+        require("/wamp64/www/kds/DataAccess/connection/connection.php");
+        if ($kdsCon) {
+            $query = mysqli_query($kdsCon, "SELECT FORMAT(AVG(TIMESTAMPDIFF(YEAR,patients.patient_date_of_birth,CURDATE())),1) AS age
+            FROM `patients` inner join applicationinformations on patients.id = applicationinformations.patient_id 
+            inner join clinics on applicationinformations.clinic_id = clinics.id group by clinic_name");
+            if (mysqli_num_rows($query) > 0) {
+                $patientsAge = array();
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $patientsAge[] = $row;
+                }
+                mysqli_close($kdsCon);
+                return $patientsAge;
+            } else {
+                $patientsAge = array();
+                return $patientsAge;
+            }
+        } else {
+            $patientsAge = array();
+            return $patientsAge;
+        }
+    }
 }
+

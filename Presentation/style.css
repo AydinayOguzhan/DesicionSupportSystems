@@ -275,6 +275,15 @@ tr:nth-child(odd){
     border-radius: 0.5vmin;
 }
 
+.dashboard-header{
+    line-height: 2vmin;
+    font-size: 2vmin;
+    margin: 2vmin;
+    padding: 0.5vmin;
+    color: var(--white);
+    border-radius: 0.5vmin;
+    background-color: var(--primary);
+}
 /* Header label end  -------------------------------------------------------------------------------*/
 
 label{

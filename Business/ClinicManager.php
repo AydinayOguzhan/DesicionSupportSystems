@@ -71,4 +71,12 @@ class ClinicManager
             throw new Exception(Constants::$unsuccessful, 1);
         }
     }
+
+    function GetClinicApplicationNumbers(){
+        return $this->clinicDal->GetClinicApplicationNumbers();
+    }
+
+    function GetClinicPatientsAge(){
+        return $this->clinicDal->GetClinicPatientsAge();
+    }
 }
