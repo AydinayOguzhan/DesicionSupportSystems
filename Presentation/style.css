@@ -69,7 +69,7 @@ input:focus{
 
 /* Buttons start  -------------------------------------------------------------------------------*/
 .btn{
-    display: block;
+    display: inline-block;
     height: 6vmin;
     width: 10vmin;
     font-size: medium;
@@ -290,7 +290,7 @@ label{
     margin: 1vmin;
 }
 
-select{
+select, .modal-select{
     padding-left: 1vmin;
     padding-top: 0.2vmin;
     padding-bottom: 0.2vmin;
@@ -312,8 +312,27 @@ select{
     background-size: 16px 12px;
 }
 
+.modal-select{
+    width: 50vmin !important;
+}
+
 select:hover{
     border: 1px solid #719ECE;
+}
+
+.modal, .modal-active{
+    height: auto;
+    width: auto;
+    background-color:white; 
+    position:absolute;
+    left:40%; 
+    top:30%;
+    text-align: center;
+}
+
+.fade{
+    opacity: 0.5;
+    transition: opacity .15s linear;
 }
 
 /* footer{

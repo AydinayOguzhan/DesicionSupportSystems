@@ -56,7 +56,7 @@ class NurseDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "select nwp.id, nwp.clinic_id, clinics.clinic_name, nwp.clinic_id,COUNT(nwp.clinic_id) 
+            $query = mysqli_query($kdsCon, "select nwp.id, nwp.clinic_id, clinics.clinic_name, nwp.clinic_id,COUNT(nwp.clinic_id) as nurse_numbers
             from nurseworkplaces as nwp inner join clinics on nwp.clinic_id = clinics.id 
             GROUP BY nwp.clinic_id HAVING COUNT(nwp.clinic_id) >= 1");
             if (mysqli_num_rows($query) > 0) {
