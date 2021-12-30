@@ -11,7 +11,9 @@ class NurseDal
     {
         require("/wamp64/www/kds/DataAccess/connection/connection.php");
         if ($kdsCon) {
-            $query = mysqli_query($kdsCon, "SELECT * from nurses");
+            $query = mysqli_query($kdsCon, "select nurses.id, nurses.nurse_first_name, nurses.nurse_last_name, nursewages.wage, 
+            nurseworkplaces.clinic_id, clinics.clinic_name from nurses inner join nursewages on nurses.id = nursewages.nurse_id 
+            inner join nurseworkplaces on nurses.id = nurseworkplaces.nurse_id inner join clinics on nurseworkplaces.clinic_id = clinics.id");
             if (mysqli_num_rows($query) > 0) {
                 $users = array();
                 while ($row = mysqli_fetch_assoc($query)) {

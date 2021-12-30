@@ -25,7 +25,7 @@
             <li><a href="/kds/Presentation/HomePage.php"><i class="fas fa-chart-line"></i>Dashboard</a></li>
             <li><a href="/kds/presentation/users/AllUsers.php"><i class="fas fa-users"></i>Users</a></li>
             <li><a href="/kds/presentation/doctors/AllDoctors.php"><i class="fas fa-user-md"></i>Doctors</a></li>
-            <li><a href="#"><i class="fas fa-user-nurse"></i>Nurses</a></li>
+            <li><a href="/kds/presentation/nurses/AllNurses.php"><i class="fas fa-user-nurse"></i>Nurses</a></li>
             <li><a href="/kds/presentation/majors/AllMajors.php"><i class="fas fa-chalkboard-teacher"></i>Majors</a></li>
             <li><a href="/kds/presentation/clinic/AllClinics.php"><i class="fas fa-clinic-medical"></i>Clinics</a></li>
             <li><a href="#"><i class="fas fa-procedures"></i>Operating Rooms</a></li>
