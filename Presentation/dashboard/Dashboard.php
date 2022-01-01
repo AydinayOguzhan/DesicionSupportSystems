@@ -7,12 +7,14 @@ $nurseManager = new NurseManager();
 $clinicManager = new ClinicManager();
 
 $doctors = array();
+$doctorWages = array();
 $nurses = array();
 $clinicAplicationNumbers = array();
 $clinicPatientsAge = array();
 
 
 $doctorClinics = $doctorManager->GetDoctorWorkplaceNumbers();
+$doctorWages = $doctorManager->GetAllDoctorsWithWage();
 $clinicAplicationNumbers = $clinicManager->GetClinicApplicationNumbers();
 $clinicPatientsAge = $clinicManager->GetClinicPatientsAge();
 $nurses = $nurseManager->GetNurseWorkplaceNumbers();
@@ -24,6 +26,7 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
     $doctorClinicNames =  array_map(function ($ar) {
         return $ar["clinic_name"];
     }, $doctorClinics);
+
     $doctorClinicNumbers =  array_map(function ($ar) {
         return $ar["COUNT(dwp.clinic_id)"];
     }, $doctorClinics);
@@ -36,9 +39,16 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
         return $ar["age"];
     }, $clinicPatientsAge);
 
-    $nurseNumbers = array_map(function($ar) {
+    $nurseNumbers = array_map(function ($ar) {
         return $ar["nurse_numbers"];
-    },$nurses);
+    }, $nurses);
+
+    $dWages = array_map(function ($ar) {
+        return $ar["wage"];
+    }, $doctorWages);
+    $dNames = array_map(function ($ar) {
+        return $ar["doctor_first_name"];
+    }, $doctorWages);
 ?>
 
     <!DOCTYPE html>
@@ -56,13 +66,17 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
         var nurseNumbers;
         var nurseNumbersCanvas, nurseNumbersChart;
 
+        var doctorWages, doctorNames, doctorCtx, doctorWagesChart;
+
         function drawChart() {
 
             doctorClinicNames = [<?php echo '"' . implode('","', $doctorClinicNames) . '"' ?>];
             doctorClinicNumbers = [<?php echo '"' . implode('","', $doctorClinicNumbers) . '"' ?>];
             aplicationNumbers = [<?php echo '"' . implode('","', $aplicationNumbers) . '"' ?>];
             patientsAge = [<?php echo '"' . implode('","', $patientsAge) . '"' ?>];
-            nurseNumbers = [<?php echo '"' .implode('","', $nurseNumbers). '"' ?>]
+            nurseNumbers = [<?php echo '"' . implode('","', $nurseNumbers) . '"' ?>]
+            doctorWages = [<?php echo '"' . implode('","', $dWages) . '"' ?>]
+            doctorNames = [<?php echo '"' . implode('","', $dNames) . '"' ?>]
             // var color = [];
             // var dynamicColors = function() {
             //     var r = Math.floor(Math.random() * 255);
@@ -75,6 +89,7 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
             createDoctorAndApplicationNumbersChart();
             createPatientAverageAgeChart();
             createNurseAndApplicationNumbersChart();
+            createDoctorWagesChart();
 
         }
         window.onload = drawChart;
@@ -113,6 +128,21 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
             });
         }
 
+        function createDoctorWagesChart(){
+            doctorCtx = document.getElementById("doctorWagesChart");
+            doctorWagesChart = new Chart(doctorCtx, {
+                type: 'bar',
+                data: {
+                    labels: doctorNames,
+                    datasets: [{
+                            data: doctorWages,
+                            label: "Maaş",
+                            backgroundColor: "#0086ff"
+                        }],
+                },
+            });
+        }
+
         function createPatientAverageAgeChart() {
             ageColor = [];
             for (let i = 0; i < patientsAge.length; i++) {
@@ -133,13 +163,14 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
                     datasets: [{
                         data: patientsAge,
                         label: "Hasta Yaşları",
-                        backgroundColor: ageColor
+                        backgroundColor: ageColor,
+                        borderColor: ageColor
                     }],
                 },
             });
         }
 
-        function createNurseAndApplicationNumbersChart(){
+        function createNurseAndApplicationNumbersChart() {
             aplicationColor = [];
             nurseColor = [];
             for (let i = 0; i < nurseNumbers.length; i++) {
@@ -147,7 +178,7 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
                 if (aplicationNumbers[i] - element >= 2) {
                     nurseColor.push("#ff0011");
                     aplicationColor.push("#e21d22");
-                }else {
+                } else {
                     nurseColor.push("#00ff5b");
                     aplicationColor.push("#27d851");
                 }
@@ -281,13 +312,18 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
             </div>
 
             <div class="chart-container" style="text-align:center; height:40vh; width:70vh; position:absolute;left:60%; top:10%;">
+                <label class="dashboard-header" for="nurseNumbersCanvas">Kliniklere Göre Gelen Hasta ve Hemşire Sayıları</label>
+                <canvas id="nurseNumbersCanvas"></canvas>
+            </div>
+
+            <div class="chart-container" style="text-align:center; height:40vh; width:70vh; position:absolute;left:20%; top:60%;">
                 <label class="dashboard-header" for="myChart">Kliniklere Göre Gelen Hasta Yaş Ortalamaları</label>
                 <canvas id="myChart"></canvas>
             </div>
 
-            <div class="chart-container" style="text-align:center; height:40vh; width:70vh; position:absolute;left:20%; top:60%;">
-                <label class="dashboard-header" for="nurseNumbersCanvas">Kliniklere Göre Gelen Hasta ve Hemşire Sayıları</label>
-                <canvas id="nurseNumbersCanvas"></canvas>
+            <div class="chart-container" style="text-align:center; height:40vh; width:70vh; position:absolute;left:60%; top:60%;">
+                <label class="dashboard-header" for="myChart">Doktor Maaşları</label>
+                <canvas id="doctorWagesChart"></canvas>
             </div>
         </div>
     </body>

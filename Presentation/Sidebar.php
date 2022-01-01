@@ -31,7 +31,7 @@
             <!-- <li><a href="#"><i class="fas fa-procedures"></i>Operating Rooms</a></li> -->
             <li><a href="/kds/presentation/patients/AllPatients.php"><i class="fas fa-user-injured"></i>Patients</a></li>
             <li><a href="/kds/presentation/rooms/AllRooms.php"><i class="fas fa-bed"></i>Rooms</a></li>
-            <li><a href="#"><i class="fas fa-heartbeat"></i>Critical Care Units</a></li>
+            <!-- <li><a href="#"><i class="fas fa-heartbeat"></i>Critical Care Units</a></li> -->
             <li><a href="#" onclick="signOut()"><i class="fas fa-times"></i>Sign Out</a></li>
             
         </ul>
