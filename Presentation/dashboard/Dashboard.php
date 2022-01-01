@@ -131,13 +131,14 @@ if (count($doctorClinics) <= 0 || count($clinicAplicationNumbers) <= 0 || count(
         function createDoctorWagesChart(){
             doctorCtx = document.getElementById("doctorWagesChart");
             doctorWagesChart = new Chart(doctorCtx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: doctorNames,
                     datasets: [{
                             data: doctorWages,
                             label: "Maaş",
-                            backgroundColor: "#0086ff"
+                            backgroundColor: "#48a9ff",
+                            borderColor:"#0086ff"
                         }],
                 },
             });
