@@ -2,22 +2,22 @@
 
 class PatientManager
 {
-    private $patientdal;
+    private $patientDal;
     function __construct()
     {
         require_once("/wamp64/www/kds/DataAccess/PatientDal.php");
         require_once("/wamp64/www/kds/Business/Constants.php");
-        $this->patientdal = new PatientDal();
+        $this->patientDal = new PatientDal();
     }
 
     function GetAllPatients()
     {
-        return $this->patientdal->GetAllPatients();
+        return $this->patientDal->GetAllPatients();
     }
 
     function GetPatientById($patientId)
     {
-        return $this->patientdal->GetPatientById($patientId);
+        return $this->patientDal->GetPatientById($patientId);
     }
 
     function Delete()
