@@ -1,3 +1,3 @@
 # ManagementSupportSystems
 
-I made this project for my school classes. I used php, javascript, html, css and mysql. 
+I made this project for my school classes. I used PHP, Javascript, Html5, Css, MySQL, jQuery/Ajax and Chart.js. 
